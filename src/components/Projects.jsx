@@ -25,7 +25,7 @@ import covidImg from "../assets/image.png";
 
 const projects = [
   {
-    title: "Etihad Sports Academy Platform",
+    title: "Ethihad Sports Academy Platform",
     year: "2023–2024",
     tech: "React · Node.js · MySQL · Tailwind · JWT",
     image: etihadImg,
