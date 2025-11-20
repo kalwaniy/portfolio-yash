@@ -14,6 +14,9 @@ import runningImg5 from "../assets/6.jpg";
 import advisingImg from "../assets/ad.png";
 import advisingImg2 from "../assets/ad1.png";
 
+
+import covidImg from "../assets/image.png";
+
 const projects = [
   {
     title: "Etihad Sports Academy Platform",
@@ -66,6 +69,27 @@ const projects = [
     live: "#",
     device: "laptop",
   },
+  // 🔹 New website project (single image + View Website button, no gallery)
+  {
+    title: "COVID-19 Awareness Website",
+    year: "2023",
+    tech: "HTML · CSS · JavaScript",
+    image: covidImg,
+    images: [covidImg], // only one image
+    description:
+      "Informational website built for an ISTE course, focused on COVID-19 facts, safety measures, and resources.",
+    bullets: [
+      "Multi-page static site with structured content on symptoms, prevention, and FAQs.",
+      "Custom responsive layout using semantic HTML and CSS.",
+      "Deployed on RIT servers using the standard course hosting workflow.",
+    ],
+    repo: "",
+    live:
+      "https://people.rit.edu/yk1956/ISTE240/project-covid/Project/Project/index.html",
+    device: "laptop",
+    liveLabel: "View Website",
+    disableGallery: true, // 👉 no lightbox for this project
+  },
 ];
 
 export default function Projects() {
@@ -78,6 +102,9 @@ export default function Projects() {
   });
 
   const openGallery = (project) => {
+    // 👉 Don’t open gallery for projects that disable it
+    if (project.disableGallery) return;
+
     setGallery({
       open: true,
       images: project.images || [project.image],
@@ -174,9 +201,12 @@ export default function Projects() {
                         alt={p.title}
                       />
                     </div>
-                    <p className="muted small project-media-hint">
-                      Click to view gallery
-                    </p>
+                    {/* Hide hint if gallery is disabled */}
+                    {!p.disableGallery && (
+                      <p className="muted small project-media-hint">
+                        Click to view gallery
+                      </p>
+                    )}
                   </>
                 )}
               </div>
@@ -202,17 +232,8 @@ export default function Projects() {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      Live Demo
-                    </a>
-                  )}
-                  {p.repo && (
-                    <a
-                      href={p.repo}
-                      className="btn btn-outline"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Code on GitHub
+                      {/* 👉 Custom label for website project */}
+                      {p.liveLabel || "Live Demo"}
                     </a>
                   )}
                 </div>
@@ -262,34 +283,42 @@ export default function Projects() {
                 />
               )}
 
-              <button
-                className="lightbox-nav left"
-                onClick={prevImage}
-                aria-label="Previous image"
-              >
-                ‹
-              </button>
-              <button
-                className="lightbox-nav right"
-                onClick={nextImage}
-                aria-label="Next image"
-              >
-                ›
-              </button>
+              {/* 👉 Only show nav arrows if there is more than one image */}
+              {gallery.images.length > 1 && (
+                <>
+                  <button
+                    className="lightbox-nav left"
+                    onClick={prevImage}
+                    aria-label="Previous image"
+                  >
+                    ‹
+                  </button>
+                  <button
+                    className="lightbox-nav right"
+                    onClick={nextImage}
+                    aria-label="Next image"
+                  >
+                    ›
+                  </button>
+                </>
+              )}
             </div>
 
-            <div className="lightbox-dots">
-              {gallery.images.map((_, i) => (
-                <button
-                  key={i}
-                  className={`lightbox-dot ${
-                    i === gallery.index ? "active" : ""
-                  }`}
-                  onClick={(e) => goToImage(i, e)}
-                  aria-label={`Go to image ${i + 1}`}
-                />
-              ))}
-            </div>
+            {/* 👉 Only show dots if multiple images */}
+            {gallery.images.length > 1 && (
+              <div className="lightbox-dots">
+                {gallery.images.map((_, i) => (
+                  <button
+                    key={i}
+                    className={`lightbox-dot ${
+                      i === gallery.index ? "active" : ""
+                    }`}
+                    onClick={(e) => goToImage(i, e)}
+                    aria-label={`Go to image ${i + 1}`}
+                  />
+                ))}
+              </div>
+            )}
           </motion.div>
         </div>
       )}
