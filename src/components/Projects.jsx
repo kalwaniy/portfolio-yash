@@ -11,8 +11,14 @@ import runningImg2 from "../assets/2.jpg";
 import runningImg3 from "../assets/3.jpg";
 import runningImg4 from "../assets/4.jpg";
 import runningImg5 from "../assets/6.jpg";
-import advisingImg from "../assets/ad.png";
-import advisingImg2 from "../assets/ad1.png";
+import advisingImg from "../assets/ad4.jpg";
+import advisingImg2 from "../assets/ad.png";
+import advisingImg3 from "../assets/ad1.png";
+
+import advisingImg4 from "../assets/ad5.jpg";
+
+import advisingImg5 from "../assets/ad8.jpg";
+
 
 
 import covidImg from "../assets/image.png";
@@ -57,7 +63,7 @@ const projects = [
     year: "2024–2025",
     tech: "React · Node.js · MySQL · Tailwind",
     image: advisingImg,
-    images: [advisingImg, advisingImg2, advisingImg, advisingImg, advisingImg],
+    images: [advisingImg, advisingImg2, advisingImg3, advisingImg4, advisingImg5],
     description:
       "Web platform to manage course approvals, overloads, and prerequisite waivers with multi-role workflows.",
     bullets: [
